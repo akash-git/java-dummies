@@ -19,10 +19,13 @@ public abstract class ExecutorTest extends TestApproach {
         super(name);
     }
 
+    protected List<Callable<String>> getTasks() {
+        return new RequestProducer().getCallables();
+    }
 
     @Override
     protected void run() {
-        List<Callable<String>> callables = new RequestProducer().getCallables();
+        List<Callable<String>> callables = getTasks();
 
         List<Future<String>> futures = new ArrayList<>();
 
